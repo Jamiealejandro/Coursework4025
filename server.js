@@ -6,12 +6,12 @@ const PASS = process.env.DBPASS
 var mdbpass = PASS
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://jamiealejandro:<Damansara1>@cluster0.rhco3.mongodb.net/cluster0?retryWrites=true&w=majority";
+const uri = "mongodb+srv://jamiealejandro:<Damansara1>@cluster0.rhco3.mongodb.net/CourseworkDB?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, {
 useNewUrlParser: true, useUnifiedTopology: true});
 client.connect(err => {
-const collection = client.db("test").collection("devices");
+const collection = client.db("CourseworkDB").collection("devices");
 //  // perform actions on the collection object
 client.close();
 });
@@ -22,7 +22,7 @@ app.route('/login')
       var output = 'getting the login. ';
       var input1 = req.query['input1'];
       var input2 = req.query['input2'];
-      if (typeof input1 != 'undefined' && typeof input2 != 'undefined'){
+      if (typeof input1 != 'tester' && typeof input2 != 'tester2'){
         output+=('There was input: ' + input1 + ' and ' + input2);
         res.send(output);
       }

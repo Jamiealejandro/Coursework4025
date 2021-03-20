@@ -10,7 +10,7 @@ http.createServer(function(request, response) {
         'Access-Control-Allow-Origin' : '*'
       });
 
-      var readStream = fs.createReadStream( 'index.html').pipe(res)
+      var readStream = fs.createReadStream( 'C:/Users/Jamie Chapman/Documents/Github/Coursework4025' + '/index.html').pipe(res)
 
       readStream.pipe(response);
 }).listen(PORT);

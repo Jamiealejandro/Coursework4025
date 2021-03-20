@@ -2,11 +2,38 @@ var express = require('express');
 var app = express();
 const PORT = process.env.PORT || 8080;
 var port = PORT;
+const PASS = process.env.DBPASS
+var mdbpass = PASS
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://jamiealejandro:<Damansara1>@cluster0.rhco3.mongodb.net/test";
 
 app.route('/login')
 
     .get(function(req, res){
-      res.send('this is the login form');
+      var output = 'getting the login';
+      var input1 = req.query['input1'];
+      var input2 = req.query['input2'];
+      if (typeof input1 != 'undefined' && typeof input2 != 'undefined'){
+        output+=('There was input: ' + input1 + ' and ' + input2);
+        res.send(output);
+      }
+      console.log('Start the database stuff');
+
+      MongoClient.connect(uri, function (err, db) {
+             if(err) throw err;
+             //Write databse Insert/Update/Query code here..
+             console.log('Start the database stuff');
+             var dbo = db.db("mydb");
+             var myobj = { firstInput: input1, secondInput: input2 };
+             dbo.collection("users").insertOne(myobj, function(err, res) {
+               if (err) throw err;
+               console.log("1 user inserted");
+               db.close();
+             });
+             console.log('End the database stuff');
+      });
+
     })
 
       .post(function(req, res){
@@ -28,8 +55,9 @@ var adminRouter = express.Router();
     next();
   });
 
-adminRouter.get('/', function(req, res){
-  res.send('I am the dashboard');
+adminRouter.get('/', function(req, res) {
+    res.send('I am the dashboard!');
+});
 
 adminRouter.get('/users', function(req, res) {
   res.send('I show all the users');

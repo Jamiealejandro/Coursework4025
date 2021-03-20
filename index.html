@@ -6,34 +6,68 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="MyWebsiteCSS.css" >
   </head>
-  <body>
-    <header>
+  <header>
 
-    <h1> Roman History Lover's Forum</h1>
-    <h2> This is the homepage </h2>
+  <h1> Roman History Lover's Forum</h1>
+  <h2> This is the homepage </h2>
+
 </header>
 <nav class="breadcrumb">
 <a class="breadcrumb-item" href="index.html">Sign Up</a>
 <a class="breadcrumb-item" href="Login.html">Log In</a>
-
-
-
 </nav>
-<p></p>
-<h3> Name: </h3>
-<p> James Alejandro Chapman (prefered name is Jamie) </p>
-<h3> Profile </h2>
-<p> I am a first year student at Robert Gordon's University, studying computing science. The following webpages are for a project for the Computing Information Systems module to where i have to design and code my own websites using html and css through the atom application. </p>
-<iframe id="Map1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2166.078681532909!2d-2.141543234015978!3d57.11861853094063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x488410483d2f0941%3A0x5d8969688e77366a!2sRobert+Gordon+University!5e0!3m2!1sen!2suk!4v1508233903815" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> </p>
-<h3> My Hobbies </h3>
-<p> In my spare time, i am a regular hockey player. I played for my school (Robert gordon's college) for 5 years and i was also part of a club, Gordonians which i was apart of for 4 years. I also often go to the gym. In late 2016, i finished building my first custom gaming PC, which i designed and saved up for over the process of several years. I am now designing my second build, which i hope to begin buying the products for mid-2018. I am a consistant gamer at home, playing across various platforms and consoles. </p>
+  <body onload = "makeRequest();">
+
+<script>
+  	var req;
+
+	function makeRequest() {
+    if (window.XMLHttpRequest) {
+        req = new XMLHttpRequest();
+    }
+    else if (window.ActiveXObject) {
+        req = new ActiveXObject("Msxml2.XMLHTTP");
+    }
+    else {
+    	// Ajax not supported
+			return;
+    }
+
+		req.onreadystatechange = function() {
+		var txt = "";
+    if (this.readyState == 4 && this.status == 200) {
+			var response = this.responseText;
+			console.log (response);
+     document.getElementById("answer").innerHTML = response;
+    }
+	};
+
+}
+
+	function doStuff() {
+		input1 = document.getElementById ("input1").value;
+		input2 = document.getElementById ("input2").value;
+
+	  req.open("GET", "/login?input1=" + input1 + "&input2=" + input2, true);
+		req.send();
+		//var params = 'input1=' + input1 + '&input2=' + input2;
+		//req.open('POST', '/login?', true);
+		//req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		//req.send(params);
+
+	}
+</script>
+
+<p>Input 1: <input type = "text" id = "input1"></input></p>
+<p>Input 2: <input type = "text" id = "input2"></input></p>
 
 
-  <h3> Lorem </h3>
-  <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<h3>Response</h3>
 
-  </body>
+<p id="answer">Server response will go here</p>
+
+<input type = "button" value = "Do it!" onclick = "doStuff();" />
+
+
+</body>
 </html>

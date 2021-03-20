@@ -15,7 +15,7 @@ app.route('/login')
     });
 
 app.get('/', function(req, res) {
- res.sendFile('C:/Users/Jamie Chapman/Documents/Github/Coursework4025' + '/index.html');
+ res.sendFile(__dirname + '/index.html');
 });
 
 var adminRouter = express.Router();

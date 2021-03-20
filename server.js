@@ -6,7 +6,7 @@ const PASS = process.env.DBPASS
 var mdbpass = PASS
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://jamiealejandro:<Damansara1>@cluster0.rhco3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = "mongodb+srv://jamiealejandro:<Damansara1>@cluster0.rhco3.mongodb.net/cluster0?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {

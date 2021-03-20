@@ -19,7 +19,7 @@ client.close();
 app.route('/login')
 
     .get(function(req, res){
-      var output = 'getting the login';
+      var output = 'getting the login. ';
       var input1 = req.query['input1'];
       var input2 = req.query['input2'];
       if (typeof input1 != 'undefined' && typeof input2 != 'undefined'){

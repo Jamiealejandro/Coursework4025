@@ -1,11 +1,18 @@
 h1 {
   text-decoration: underline;
-  float: center;
-  padding-left: 700px;
+  text-align: center;
+
 
 }
 h2 {
   text-decoration: underline;
-  float: center;
-  padding-left: 750px;
+  text-align: center;
+
+}
+img {
+  display: block;
+  max-width:230px;
+  max-height:95px;
+  width: auto;
+  height: auto;
 }
